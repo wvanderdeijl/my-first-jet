@@ -6,4 +6,16 @@
 <br/>
 <div>
     To change the content of this section, you will make edits to the people.tmpl.html file located in the /templates folder.
+    <label for="text-input">search</label>
+    <input id="text-input" 
+           type="text"
+           data-bind="ojComponent: {component: 'ojInputText', 
+                                    value: searchName}"/>
+    <button id= "button"
+            data-bind="click: searchClick, 
+                       ojComponent: {component: 'ojButton',
+                                     label: 'Search' }">
+    </button>
+    <span class="oj-label">Current component value is: </span>
+    <span data-bind="text: searchName"></span>
 </div>
