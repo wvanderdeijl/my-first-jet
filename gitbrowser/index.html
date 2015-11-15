@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<!-- ************************ IMPORTANT INFORMATION ************************************
+     This file and Quick Start project are provided as an example of how to configure a JET application.
+     It contains the Oracle JET framework and a default requireJS configuration file to show how JET can be setup
+     in a common application. This project template can be used in conjunction with demo code from the JET website 
+     to test JET component behavior and interactions.
+
+     Any CSS styling with the prefix "demo-" is for demonstration only and is not provided as part of the JET framework.
+
+     The Header and Footer sections are provided for demonstration only. They are not part of the JET framework. 
+     Best practice patterns are provided as part of the JET website under the Samples section.
+
+     Aria Landmark role attributes are added to the different sections of the application for accessibility compliance.
+     If you change the type of content for a specific section from what is defined, you should also change the 
+     role value for that section to represent the appropriate content type.
+     ***************************** IMPORTANT INFORMATION ************************************ -->
+
+<html lang="en-us" class='demo-sticky-footer-layout'>
+    <head>
+        <title>Oracle JET Quick Start - Basic</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="css/images/favicon.ico" type="image/x-icon" />
+
+        <!-- This is the main css file for the default Alta theme -->
+        <link rel="stylesheet" href="css/libs/oj/v1.1.2/alta/oj-alta-min.css" type="text/css"/>
+
+        <!-- These style classes are for demonstration purposes only. -->
+        <link rel="stylesheet" href="css/demo-alta-patterns-min.css"/>
+
+        <!-- This is where you would add any app specific styling -->
+        <link rel="stylesheet" href="css/override.css" type="text/css"/>
+
+
+        <!-- RequireJS configuration file -->
+        <script data-main="js/main" src="js/libs/require/require.js"></script>
+
+    </head>
+    <body class="demo-appheader-offcanvas-pushwrapper">
+
+        <!-- The globalBody section is initially hidden so that content is not partially displayed before content is 
+          ** loaded into the dynamic sections.  You will see a jQuery .show() method call at the bottom of the main.js 
+          ** file which is what finally displays the page content. -->
+        <div id="globalBody" style="display: none">
+            
+            <!-- 
+            ** This off-canvas section is used when the browser is resized to a 
+            ** medium or smaller media query size. It moves the App Navigation into a drawer.
+            ** The ojModule has the viewmodel bound to the same header module, but the view is 
+            ** changed to use off-canvas template.
+            -->
+            <!-- off-canvas content -->
+            <div id="appDrawer" 
+                 class="oj-offcanvas-start oj-panel demo-appheader-offscreencontent" 
+                 style="height:100%;">
+                <div id='demoAppheaderOffCanvasInnerDiv' data-bind="ojModule: {name: 'header', viewName: 'demoAppHeaderOffCanvasTemplate'}"></div>
+            </div>
+
+            <!-- Header section which contains the Global Branding, Global Navigation, 
+            ** and Application Navigation code. Template is located in /templates/header.tmpl.html 
+            -->
+            <header id="headerWrapper" role="banner" data-bind="ojModule: { name: 'header'}"></header>
+
+            <!-- This is where your main page content will be loaded -->
+            <div id="mainContainer">
+                <div class="oj-row">
+                    <div class="oj-xl-3 oj-lg-3 oj-sm-12 oj-col">
+                        <div role="navigation" class="demo-page-content-area">
+                            <!--  This section is usually used for Navigation. 
+                              ** If its purpose is changed, the "role" attribute should be changed as well
+                              ** to meet accessibility guidelines.  Using the ojModule binding to load the specific HTML template
+                              ** that will be shown on the page. Using the "viewName" option just loads the HTML template 
+                              ** while binding it to the existing viewmodel. 
+                            -->
+                            <div id="navigationContent" data-bind="ojModule: { viewName: 'navContent'}"></div>
+                        </div>
+                    </div>
+                    <div class="oj-xl-6 oj-lg-9 oj-sm-12 oj-col"> 
+                        <div role="main" class="demo-page-content-area">
+                            <!-- Unlike the Navigation and Complementary sections, this ojModule binding is using "name" instead of "viewName". 
+                              ** This tells the binding to look for and load the JavaScript module of the same name, 
+                              ** before loading the view template file.  The value of the name option is being set to the 
+                              ** current state of the ojRouter object. This is what controls the pages that will be loaded when the App Nav buttons are clicked.
+                              ** See the main.js file for how the ojRouter module is defined
+                            -->
+                            <div id="mainContent" data-bind="ojModule: { name: router.stateId()}"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- You will notice that each section in the page has a set of column widths defined by CSS classes.
+                      ** These tell the div to take up so much space when it is in a specific media query range. 
+                      ** This is part of the responsive grid layout framework provided by JET. As this one is set, 
+                      ** the div will take up all 12 columns at a small and up media query size. When it hits extra large, 
+                      ** it will only take up 3 columns.
+                    -->
+                    <div class="oj-xl-3 oj-sm-12 oj-col"> 
+                        <div role="complementary" class="demo-page-content-area">
+                            <div id="complementaryContent" data-bind="ojModule: { viewName: 'compContent'}"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

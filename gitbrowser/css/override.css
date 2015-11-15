@@ -1,0 +1,56 @@
+/* 
+    Document   : override
+    Created on : <date>
+    Author     : <author>
+    Description:
+        This is where any of your application specific styles should be included
+*/
+
+.demo-page-content-area {
+    background: #ffffff;
+    border-radius: 3px;
+    border: 1px solid #d6dfe6;
+    margin: 10px;
+    min-height: 100%;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
+
+.demo-icon-sprite {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  line-height: 1;
+  overflow: hidden;
+  direction: ltr;
+  text-align: center;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box; }
+  .demo-icon-sprite:before {
+    display: inline-block;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box; }
+
+.demo-icon-sprite:before {
+  content: url("images/demo-small-icons_454545_256x240.png"); }
+
+.oj-enabled .demo-icon-sprite:before {
+  content: url("images/demo-small-icons_454545_256x240.png"); }
+
+.oj-hover .demo-icon-sprite:before {
+  content: url("images/demo-small-icons_0572ce_256x240.png"); }
+
+.oj-active .demo-icon-sprite:before {
+    content: url("images/demo-small-icons_ffffff_256x240.png");}
+
+
+/* positioning */
+.demo-icon-compass:before {
+  margin: -32px 0 0 0; 
+}
+
+.demo-icon-search:before {
+    margin: -32px 0 0 -16px;
+}
+
