@@ -16,16 +16,32 @@
                 icons: {start:'oj-fwk-icon oj-fwk-icon-magnifier'},
                 label: 'Search'
             }"></button>
-    max score:<span data-bind="text: maxScore"></span>
     <div>
         <script type="text/html" id="user_template">
             <li>
                 <div class="oj-row">
-                    <div class="oj-col oj-sm-1" style="padding:0">
+                    <div class="oj-col oj-sm-2 oj-md-1" data-bind="if: $parent.maxScore">
+                        <div id="gauge4" 
+                             data-bind="ojComponent: {
+                                            component: 'ojStatusMeterGauge', 
+                                            animationDuration: 1500,
+                                            animationOnDisplay: 'auto',
+                                            min: 0, 
+                                            max: 100, 
+                                            thresholds: [{max: 33}, {max: 67}, {}],
+                                            value: Math.round(score/$parent.maxScore()*100), 
+                                            orientation: 'circular',
+                                            metricLabel: {rendered: 'on', _textType:'percent'},
+                                            plotArea: {rendered: 'on'},
+                                            rootAttributes: {style: 'height:40px;width:40px;'},
+                                            readOnly: false
+                                        }"></div>
+                    </div>
+                    <div class="oj-col oj-sm-1 oj-md-1">
                         <span class="avatar" style="border-radius:50%; background-size:35px 35px; width: 35px; height: 35px; display: inline-block;"
                               data-bind="style: {backgroundImage: 'url(\'' + avatar_url + '\')'}"></span>
                     </div>
-                    <div class="oj-col oj-sm-11">
+                    <div class="oj-col oj-sm-9 oj-md-10">
                         <strong data-bind="text: login"></strong>
                     </div>
                 </div>

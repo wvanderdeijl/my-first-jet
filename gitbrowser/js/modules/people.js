@@ -2,7 +2,7 @@
  * People module
  */
 define(['knockout', 'ojs/ojcore', 'jquery', 'ojs/ojrouter', 'ojs/ojknockout-model', 'ojs/ojmodel', 
-        'ojs/ojinputtext', 'ojs/ojbutton', 'ojs/ojtable', 'ojs/ojlistview'], 
+        'ojs/ojinputtext', 'ojs/ojbutton', 'ojs/ojtable', 'ojs/ojlistview', 'ojs/ojgauge'], 
 function (ko, oj, $) {
     /**
      * The view model for the People module
