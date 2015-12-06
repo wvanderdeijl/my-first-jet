@@ -5,5 +5,37 @@
 </div>
 <br/>
 <div>
-    To change the content of this section, you will make edits to the library.tmpl.html file located in the /templates folder.
+    <script type="text/html" id="session_template">
+        <li class="oj-row" data-bind="click: $parent.gotoSession">
+            <div style="display:inline-block">
+                <span class="avatar"
+                      data-bind="text: shortDay, style:{backgroundColor:dayColor} "></span>
+                <span data-bind="foreach:coPresenters">
+                    <span class="avatar"
+                          data-bind="style: {backgroundImage: 'url(\'' + $data.gravatarUrl + '\')'}, attr:{title:$data.email}">&nbsp;</span>
+                </span>
+            </div>
+            <div style="display:inline-block">
+                <span style="font-weight:bold; font-size:18px;" data-bind="text: title"></span><br>
+                by <span data-bind="text: speakerName"></span><br>
+                <span data-bind="text: startTime.substring(0,5)"></span> - 
+                <span data-bind="text: endTime.substring(0,5)"></span>
+            </div>
+            <!--
+            <span data-bind="text: JSON.stringify($data)"></span>
+            -->
+        </li>
+    </script>
+    <!--
+    <input id="filter" maxlength='30' placeholder="filter" 
+           data-bind="ojComponent:{component:'ojInputText',
+                                   value: filter}"/>
+    -->
+    <ul id="sessions" 
+        data-bind="ojComponent: {
+                component: 'ojListView',
+                data: sessionsDatasource, 
+                item: {template: 'session_template'},
+                rootAttributes: {style: 'width:100%;overflow-x:hidden'},
+            }"></ul>
 </div>
