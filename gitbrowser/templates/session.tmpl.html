@@ -1,0 +1,81 @@
+<h1>Session Details</h1>
+<div>
+    <!-- ko ifnot: fetched -->
+        Please wait...
+    <!-- /ko -->
+    <!-- ko if: fetched -->
+        <input id="startprocess" type="button" style="float:right"
+               data-bind="ojComponent: {component:'ojButton', label:'Start process', disabled: processStarted},
+                          click: startProcess">
+        <div class="title" data-bind="text: session().title"></div>
+        <div class="subtitle">by <span data-bind="text: session().speakerName"></span></div>
+        <br>
+        <span data-bind="text: session().abstract"></span>
+        <!--
+        coPresenter:<span data-bind="text: session().coPresenter"></span><br>
+        coPresenterEmail:<span data-bind="text: session().coPresenterEmail"></span><br>
+        stream:<span data-bind="text: session().stream"></span><br>
+        topic:<span data-bind="text: session().topic"></span><br>
+        presentationFormat:<span data-bind="text: session().presentationFormat"></span><br>
+        experience:<span data-bind="text: session().experience"></span><br>
+        preferredLength:<span data-bind="text: session().preferredLength"></span><br>
+        contentLevel:<span data-bind="text: session().contentLevel"></span><br>
+        day:<span data-bind="text: session().day"></span><br>
+        sessionDate:<span data-bind="text: session().sessionDate"></span><br>
+        track:<span data-bind="text: session().track"></span><br>
+        startTime:<span data-bind="text: session().startTime"></span><br>
+        endTime:<span data-bind="text: session().endTime"></span><br>
+        length:<span data-bind="text: session().length"></span><br>
+        hall:<span data-bind="text: session().hall"></span><br>
+        attendances:<span data-bind="text: session().attendances"></span><br>
+        speakerId:<span data-bind="text: session().speakerId"></span><br>
+        -->
+        <div id="pie" data-bind="ojComponent: {
+                component: 'ojChart', 
+                type: 'pie', 
+                series: pieSeries,
+                animationOnDisplay: 'auto',
+                animationOnDataChange: 'auto',
+                styleDefaults: {threeDEffect: 'on'},
+                valueFormats: [{type:'value', converter:oj.Validation.converterFactory('number').createConverter({minimumFractionDigits: 0, maximumFractionDigits: 0})}],
+                hoverBehavior: 'dim'
+            }"
+            style="max-width:500px;width:100%;height:350px;">
+        </div>
+        <form data-bind="submit: save" class="oj-form">
+
+            <label for="date" >date</label>
+            <input id="date" data-bind="ojComponent: {component: 'ojInputDate', value: sessionDate, required: true, converter: dateConverter}">
+
+            <label for="start" >start</label>
+            <input id="start" data-bind="ojComponent: {
+                component: 'ojInputText', 
+                value: sessionStartTime, 
+                required: true,
+                validators:[{
+                    type:'regExp', 
+                    options:{
+                        pattern:'[0-1][0-9]:[0-5][0-9]:[0-5][0-9]',
+                        messageDetail:'use format hh:mm:ss'
+                    }
+                }],
+            }">
+            <label for="start-hr">hours</label>
+            <input id="start-hr"
+                   data-bind="ojComponent: {component: 'ojSlider', min:0, max:23, value: sessionStartHour}"/>
+            <span data-bind="text: sessionStartHour"></span>
+            <label for="start-min">minutes</label>
+            <input id="start-min"
+                   data-bind="ojComponent: {component: 'ojSlider', min:0, max:55, step: 5, value: sessionStartMinutes}"/>
+            <span data-bind="text: sessionStartMinutes"></span>
+
+            <label for="end" >end</label>
+            <input id="end" data-bind="ojComponent: {component: 'ojInputText', value: sessionEndTime, required: true}">
+
+            <div>
+                <input id="submit" type="submit" data-bind="ojComponent: {component: 'ojButton', label: 'Submit'}"/>
+                <input id="reset" type="reset" data-bind="click: cancel, ojComponent: {component: 'ojButton', label: 'Cancel'}"/>
+            </div>
+        </form>
+    <!-- /ko -->
+</div>

@@ -73,9 +73,27 @@ require(['ojs/ojcore',
                 'people': {label: 'People'},
                 'library': {label: 'Library'},
                 'graphics': {label: 'Graphics'},
-                'performance': {label: 'Performance'}
+                'performance': {label: 'Performance'},
+                'session': {label: 'Session',
+                    enter: function () {
+                        var childRouter = router.createChildRouter('id');
+                        childRouter.defaultStateId = '100';
+                    childRouter.configure(function(stateId) {
+                        console.log('stateId:' + JSON.stringify(stateId));
+                        if (!stateId) {return;}
+                        // return the oj.RouterState object 
+                        return new oj.RouterState(stateId, {});
+                    });
+
+                        router.currentState().value = childRouter;
+                    },
+                    exit: function () {
+                        var childRouter = router.currentState().value;
+                        childRouter.dispose();
+                    }
+                }
+
             });
-            
 
             function RootViewModel() {
                 var self = this;
@@ -105,5 +123,3 @@ require(['ojs/ojcore',
 
         }
 );
-
-

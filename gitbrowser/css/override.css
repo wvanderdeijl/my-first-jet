@@ -54,3 +54,21 @@
     margin: -32px 0 0 -16px;
 }
 
+.avatar {
+    line-height:48px;
+    width:48px;
+    height:48px;
+    background-size:48px 48px;
+    text-align:center;
+    border-radius:50%;
+    display:inline-block;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+}
+.subtitle {
+  font-style: italic;
+  font-size: small;
+}
