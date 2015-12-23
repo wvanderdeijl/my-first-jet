@@ -18,6 +18,11 @@
                 label: 'Search'
             }"></button>
     -->
+    <input data-bind="ojComponent: {
+               component: 'ojInputText',
+               value: searchName
+           }">
+    searching for <span data-bind="text: searchName"></span>
     <div>
         <script type="text/html" id="user_template">
             <li>
